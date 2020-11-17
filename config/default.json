@@ -1,0 +1,16 @@
+{
+  "mongodb": {
+    "database": "control_tower_db",
+    "host": "localhost",
+    "port": 27017
+  },
+  "redis": {
+    "url": "localhost"
+  },
+  "logger": {
+    "name": "twitter-migration",
+    "level": "debug",
+    "type": "console",
+    "toFile": false
+  }
+}

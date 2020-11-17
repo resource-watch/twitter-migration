@@ -1,0 +1,7 @@
+{
+  "mongodb": {
+    "database": "twitter_test",
+    "host": "localhost",
+    "port": 27017
+  }
+}

@@ -1,0 +1,29 @@
+language: node_js
+services:
+  - mongodb
+node_js:
+  - "12"
+cache:
+  directories:
+  - "node_modules"
+env:
+  global:
+    - CC_TEST_REPORTER_ID=9f1173797b3aca65254ee1d50b06d0ad27f81eeeb9db3b0567ece66eefbb1b9f
+    - NODE_ENV=test
+    - PORT=9000
+    - PUBLIC_URL=http://localhost:9000
+    - RW_TWITTER_CONSUMER_SECRET=rw_twitter_consumer_secret
+    - RW_TWITTER_CONSUMER_KEY=rw_twitter_consumer_key
+    - GFW_TWITTER_CONSUMER_SECRET=gfw_twitter_consumer_secret
+    - GFW_TWITTER_CONSUMER_KEY=gfw_twitter_consumer_key
+    - PREP_TWITTER_CONSUMER_SECRET=prep_twitter_consumer_secret
+    - PREP_TWITTER_CONSUMER_KEY=prep_twitter_consumer_key
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - yarn test
+  - yarn run coverage
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
