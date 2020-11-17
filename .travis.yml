@@ -8,10 +8,11 @@ cache:
   - "node_modules"
 env:
   global:
-    - CC_TEST_REPORTER_ID=9f1173797b3aca65254ee1d50b06d0ad27f81eeeb9db3b0567ece66eefbb1b9f
+    - CC_TEST_REPORTER_ID=b33984f32f22cc3d11b3032c2734cfc641d7792e8ebcf93116c781e91431455a
     - NODE_ENV=test
     - PORT=9000
     - PUBLIC_URL=http://localhost:9000
+    - REDIS_URL=localhost
     - RW_TWITTER_CONSUMER_SECRET=rw_twitter_consumer_secret
     - RW_TWITTER_CONSUMER_KEY=rw_twitter_consumer_key
     - GFW_TWITTER_CONSUMER_SECRET=gfw_twitter_consumer_secret

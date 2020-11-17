@@ -1,0 +1,31 @@
+version: "3"
+services:
+  develop:
+    build: .
+    ports:
+      - "9000:9000"
+    container_name: twitter-migration
+    env_file:
+      - dev.env
+    command: develop
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+
+  mongo:
+    image: mongo:3.6.13
+    container_name: twitter-migration-mongo
+    ports:
+      - "27017"
+    volumes:
+      - $HOME/docker/twitter-migration/mongodb:/data/db
+    restart: always
+  redis:
+    image: redis
+    container_name: twitter-migration-redis
+    ports:
+      - "16379:6379"
+    restart: always

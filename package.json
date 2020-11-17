@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "coverage": "nyc ts-mocha -b --project tsconfig.json -r tsconfig-paths/register --timeout 20000 'test/**/*.ts' --exit",
-    "test": "ts-mocha -b --project tsconfig.json -r tsconfig-paths/register --timeout 20000 'test/**/*.ts'",
+    "test": "ts-mocha -b --project tsconfig.json -r tsconfig-paths/register --timeout 20000 'test/**/*.ts' --exit",
     "start": "ts-node --files --project tsconfig.json -r tsconfig-paths/register src/index.ts"
   },
   "keywords": [
