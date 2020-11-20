@@ -1,9 +1,9 @@
 import chai from 'chai';
-import chaiHttp from 'chai-http';
+import ChaiHttp from 'chai-http';
 
-let requester;
+let requester:ChaiHttp.Agent;
 
-chai.use(chaiHttp);
+chai.use(ChaiHttp);
 
 const getTestAgent = async (forceNew = false) => {
     if (forceNew && requester) {
@@ -27,19 +27,6 @@ const getTestAgent = async (forceNew = false) => {
     return requester;
 };
 
-const getTestServer = async () => {
-    if (requester) {
-        return requester;
-    }
-
-    const { init } = await import('app');
-    const server = await init();
-
-    requester = chai.request(server).keepOpen();
-
-    return requester;
-};
-
 const closeTestAgent = async () => {
     if (!requester) {
         return;
@@ -52,6 +39,5 @@ const closeTestAgent = async () => {
 
 export {
     closeTestAgent,
-    getTestAgent,
-    getTestServer
+    getTestAgent
 };

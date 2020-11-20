@@ -3,6 +3,7 @@ import Koa from 'koa';
 import mongoose from 'mongoose';
 import koaBody from 'koa-body';
 import koaLogger from 'koa-logger';
+// @ts-ignore
 import koaSimpleHealthCheck from 'koa-simple-healthcheck';
 import logger from './logger';
 import loader from './loader';
@@ -50,7 +51,7 @@ interface IInit {
 
 const init = async ():Promise<IInit> => {
     return new Promise((resolve, reject) => {
-        async function onDbReady(err) {
+        async function onDbReady(err:Error) {
             if (err) {
                 if (retries >= 0) {
                     // eslint-disable-next-line no-plusplus
@@ -61,7 +62,7 @@ const init = async ():Promise<IInit> => {
                 } else {
                     logger.error('MongoURI', mongoUri);
                     logger.error(err);
-                    reject(new Error(err));
+                    reject(new Error(err.message));
                 }
 
                 return;
@@ -79,6 +80,7 @@ const init = async ():Promise<IInit> => {
 
             app.keys = ['twitter'];
             app.use(session({
+                // @ts-ignore
                 store: redisStore({
                     url: config.get('redis.url')
                 })

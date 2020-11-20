@@ -12,7 +12,9 @@
     "baseUrl": "./src",
     "incremental": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true
   },
   "exclude": ["node_modules", "dist"]
 }

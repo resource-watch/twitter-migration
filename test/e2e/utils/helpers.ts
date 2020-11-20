@@ -22,7 +22,7 @@ const createUser = (userData = {}) => ({
     ...userData
 });
 
-const createUserInDB = async (userData) => {
+const createUserInDB = async (userData:Record<string, any>) => {
     const user = await new UserModel(createUser(userData)).save();
 
     return {

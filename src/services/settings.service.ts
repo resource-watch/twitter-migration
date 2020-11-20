@@ -117,4 +117,5 @@ class Settings {
 
 }
 
+export { IConfig };
 export default Settings;

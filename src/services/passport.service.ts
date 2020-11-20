@@ -1,7 +1,7 @@
 import passport from 'koa-passport';
 import logger from 'logger';
 import { Strategy as TwitterStrategy } from 'passport-twitter';
-import UserModel from 'models/user.model';
+import UserService from 'services/user.service';
 import Settings from "services/settings.service";
 import NoTwitterAccountError from "../errors/noTwitterAccount.error";
 
@@ -9,13 +9,18 @@ class PassportService {
 
     static async registerPassportStrategies() {
 
-        async function registerUserBasic(accessToken, refreshToken, profile, done) {
+        async function registerUserBasic(
+            accessToken: string,
+            refreshToken: string,
+            profile: Record<string, any>,
+            done: (error: any, user?: any) => void
+        ) {
             logger.info('[passportService] Registering user', profile);
 
-            const user = await UserModel.findOne({
+            const user = await UserService.findOne({
                 provider: 'twitter',
                 providerId: profile.id,
-            }).exec();
+            });
 
             logger.info(user);
 

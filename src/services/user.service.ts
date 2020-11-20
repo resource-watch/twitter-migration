@@ -1,12 +1,16 @@
-import logger from 'logger';
-import bcrypt from 'bcrypt';
-import mongoose from 'mongoose';
-import UnprocessableEntityError from 'errors/unprocessableEntity.error';
 import UserModel, { IUser } from 'models/user.model';
+import bcrypt from 'bcrypt';
+import mongoose from "mongoose";
+import logger from "../logger";
+import UnprocessableEntityError from "../errors/unprocessableEntity.error";
 
-class AuthService {
+class UserService {
 
-    static async getUserById(id):Promise<IUser> {
+    static async findOne(conditions:Record<string, any>): Promise<IUser> {
+        return UserModel.findOne(conditions).exec();
+    }
+
+    static async getUserById(id:string):Promise<IUser> {
         const isValidId = mongoose.Types.ObjectId.isValid(id);
 
         if (!isValidId) {
@@ -35,4 +39,5 @@ class AuthService {
 
 }
 
-export default AuthService;
+
+export default UserService;

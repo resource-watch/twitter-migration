@@ -12,7 +12,7 @@ const should = chai.should();
 chai.use(ChaiString);
 chai.use(ChaiHttp);
 
-let requester;
+let requester:ChaiHttp.Agent;
 
 nock.disableNetConnect();
 nock.enableNetConnect(process.env.HOST_IP);
